@@ -1,0 +1,28 @@
+{
+    "navbar": {
+        "home": "ទំព័រដើម",
+        "about": "អំពី",
+        "account": "គណនី",
+        "todo": "ធ្វើ",
+        "login": "ចូល"
+    },
+    "button": {
+        "khmer": "ខ្មែរ",
+        "english": "En",
+        "close": "បិទ",
+        "open": "បើក",
+        "delete": "លុប",
+        "remove": "ដកចេញ",
+        "add": "បន្ថែម",
+        "signOut": "ចាកចេញ",
+        "edit": "កែសម្រួល",
+        "details": "លម្អិត",
+        "update": "កែសម្រួល"
+    },
+    "homePage": {},
+    "accountPage": {},
+    "aboutPage": {},
+    "todoPage": {
+        "addTodo": "បន្ថែមដើម្បីធ្វើ..."
+    }
+}

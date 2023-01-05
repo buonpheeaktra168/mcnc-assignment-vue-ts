@@ -1,0 +1,28 @@
+{
+    "navbar": {
+        "home": "Home",
+        "about": "About",
+        "account": "Account",
+        "todo": "Todo List",
+        "login": "Login"
+    },
+    "button": {
+        "khmer": "ខ្មែរ",
+        "english": "En",
+        "close": "Close",
+        "open": "Open",
+        "delete": "Delete",
+        "remove": "Remove",
+        "add": "Add",
+        "signOut": "Sign Out",
+        "edit": "Edit",
+        "details": "Detaials",
+        "update": "Update"
+    },
+    "homePage": {},
+    "accountPage": {},
+    "aboutPage": {},
+    "todoPage": {
+        "addTodo": "Add new todo..."
+    }
+}
