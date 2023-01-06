@@ -1,7 +1,6 @@
-import { createI18n } from "vue-i18n";
+import { createI18n, useI18n } from "vue-i18n";
 import en from './en.json'
 import km from './km.json'
-
 
 const messages = {
     en: en,

@@ -1,9 +1,6 @@
 <template>
     <header>
         <nav class="navbar">
-            <div class="branding">
-                <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="80" height="80" />
-            </div>
             <div class="nav-links">
                 <RouterLink class="link" to="/">{{ $t('navbar.home') }}</RouterLink>
                 <RouterLink class="link" to="/todo">{{ $t('navbar.todo') }}</RouterLink>
@@ -19,7 +16,8 @@
 
 <script setup lang="ts">
 
-const lang = localStorage.getItem("lang") || "en";
+
+const lang: String = localStorage.getItem("lang") || "en";
 
 function handleChage(event: any) {
     localStorage.setItem("lang", event.target.value);
@@ -29,15 +27,12 @@ function handleChage(event: any) {
 
 <style lang="scss" scoped>
 header {
-    background-color: #ffffff;
-    box-shadow: 2px 6px 20px 6px rgba(0, 0, 0, 0.2);
-    z-index: 99;
-    margin: 0;
 
     .navbar {
         display: flex;
         padding-right: 32px;
         align-items: center;
+        justify-content: center;
 
         .branding {
 
@@ -56,7 +51,7 @@ header {
             flex: 1;
             color: #000;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
 
             ul {
                 margin-right: 8px;
