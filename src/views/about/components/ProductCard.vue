@@ -1,12 +1,15 @@
 <template>
     <div class="container">
-        <img :src="props.image"  />
+        <div class="product-image">
+            <img :src="props.image"  />
+        </div>
         <h5>{{ props.title }}</h5>
-        <p>${{ props.price }}</p>
+        <p class="price">${{ props.price }}</p>
     </div>
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 
 const props = defineProps<{
     title: String,
@@ -26,8 +29,13 @@ const props = defineProps<{
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     padding: 12px;
     border-radius: 12px;
-    img {
-
+    margin: 8px;
+    justify-content: center;
+    align-items: center;
+    .product-image {
+        flex: 1;
+max-width: 120px;
+background-size: cover;
     }
 
     h5 {
@@ -36,8 +44,14 @@ const props = defineProps<{
         padding: 0;
     }
 
-    p {
+    .price {
+        flex: 1;
         margin: 0;
+        position:absolute;
+        justify-content: flex-end;
+        background-color: rgb(0, 174, 255);
+        padding: 12px;
+        color: #ffff;
     }
 }
 </style>
