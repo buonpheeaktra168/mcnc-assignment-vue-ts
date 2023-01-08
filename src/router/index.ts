@@ -10,14 +10,14 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/views/about/views/AboutView.vue')
-    },
-    {
       path: '/todo',
       name: 'todo',
       component: () => import('@/views/todo/views/TodoView.vue')
+    },
+    {
+      path: '/todoUpdate',
+      name: 'todoUpdate',
+      component: () => import('@/views/todo/views/TodoUpdateView.vue')
     }
   ]
 })

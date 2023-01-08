@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {  RouterView } from 'vue-router'
-import NavigationBar from './components/NavigationBar.vue'
+import { RouterView } from 'vue-router'
+import NavigationBar from '@/shared/components/NavigationBar.vue'
 </script>
 
 <template>

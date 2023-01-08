@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.input-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.input-subcontainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    align-items: flex-end;
+
+
+}
+
+.button {
+    width: 100px;
+    height: 35px;
+}
+
+
+label {
+    font-size: 16px;
+}
+
+input {
+    height: 30px;
+    width: 300px;
+}

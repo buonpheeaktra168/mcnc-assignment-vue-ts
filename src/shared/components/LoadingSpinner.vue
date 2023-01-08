@@ -11,12 +11,11 @@
     </transition>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { defineProps } from 'vue';
-const props = defineProps({
+const props = defineProps<{
     title: String,
-    icon: String,
-})
+}>()
 </script>
 
 <style>
