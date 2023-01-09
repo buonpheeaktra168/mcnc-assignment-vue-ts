@@ -40,7 +40,30 @@ export const useTodoStore = defineStore('useTodoStore', {
       console.log('myData', this.todos)
 
       this.isLoading = false;
-    }
-  }
+    },
 
+    async addTodo(newTodo: string) {
+      const myData = {
+        id: `${Math.floor(Math.random() * 100)}`,
+        title: newTodo,
+        isCompleted: false
+      };
+
+      await addNewTodo(newTodo);
+
+      this.todos.push(myData);
+
+      this.getTodos();
+    },
+
+    async deleteExistingTodo(id: string) {
+
+      this.todos.filter((d) => d.id != id);
+
+      await deleteTodo(id).then(async () => await this.getTodos())
+
+      this.getTodos();
+
+    }
+  },
 })

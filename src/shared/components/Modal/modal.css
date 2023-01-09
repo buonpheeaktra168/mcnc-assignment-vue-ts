@@ -1,24 +1,3 @@
-<template>
-    <transition name="modal-animation">
-        <div class="modal">
-            <transition name="modal-animation-inner">
-                <div class="modal-inner">
-                    <!-- <img src="../assets/images/vueIcon.png" /> -->
-                    <h2 v-if="props.title">{{ title }}</h2>
-                </div>
-            </transition>
-        </div>
-    </transition>
-</template>
-
-<script lang="ts" setup>
-// import { defineProps } from 'vue';
-const props = defineProps<{
-    title: String,
-}>()
-</script>
-
-<style>
 .modal-animation-enter-active,
 .modal-animation-leave-active {
     transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
@@ -86,4 +65,3 @@ img {
 h2 {
     margin: 30px;
 }
-</style>
