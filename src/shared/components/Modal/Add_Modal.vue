@@ -3,11 +3,10 @@
         <div class="modal">
             <transition name="modal-animation-inner">
                 <div class="modal-inner">
-                    <input :value="title" placeholder="Add todo" />
-                    <input placeholder="Description" />
+                    <input v-model="inputValue"/>
                     <div class="button">
                         <button class="cancel" @click="onClose">Cancel</button>
-                        <button class="add" @click="onAdd">Add</button>
+                        <button class="add" @click="updateTitle">Add</button>
                     </div>
                 </div>
             </transition>
@@ -17,11 +16,15 @@
 
 <script lang="ts" setup>
 import { defineEmits, ref, defineProps } from 'vue';
-const emits = defineEmits(["isClose", "isAdd"]);
-const props = defineProps(['title'])
+const emits = defineEmits(["onClose", "newTitle"]);
+defineProps(['newtitle'])
 
-const onClose = () => { emits("isClose") }
-const onAdd = () => { emits("isAdd") }
+const inputValue = ref('')
+const onClose = () => { emits("onClose") }
+
+const updateTitle = ()=> {
+    emits('newTitle', inputValue.value)
+}
 
 
 </script>

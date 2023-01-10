@@ -37,19 +37,19 @@ export const useTodoStore = defineStore('useTodoStore', {
 
       this.todos = resData;
 
-      console.log('myData', this.todos)
+      // console.log('myData', this.todos)
 
       this.isLoading = false;
     },
 
-    async addTodo(newTodo: string) {
+    async addTodo(newtitle: string) {
       const myData = {
         id: `${Math.floor(Math.random() * 100)}`,
-        title: newTodo,
+        title: newtitle,
         isCompleted: false
       };
 
-      await addNewTodo(newTodo);
+      await addNewTodo(newtitle);
 
       this.todos.push(myData);
 
@@ -61,8 +61,6 @@ export const useTodoStore = defineStore('useTodoStore', {
       this.todos.filter((d) => d.id != id);
 
       await deleteTodo(id).then(async () => await this.getTodos())
-
-      this.getTodos();
 
     }
   },

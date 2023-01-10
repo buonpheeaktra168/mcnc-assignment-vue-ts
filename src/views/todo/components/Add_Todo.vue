@@ -2,7 +2,7 @@
     <div class="container">
         <button @click="isOpenModal = true">Add Todo</button>
         <Transition>
-            <AddModal v-if="isOpenModal" @isClose="closeModal" />
+            <AddModal v-model="newtitle" v-if="isOpenModal" @onClose="closeModal" @newTitle="handleSubmit" />
         </Transition>
     </div>
 </template>
@@ -14,23 +14,29 @@ import { useTodoStore } from '@/shared/stores/TodoStrore';
 const AddModal = defineAsyncComponent(() => import('@/shared/components/Modal/Add_Modal.vue'))
 
 const todoStore = useTodoStore()
-
 const isOpenModal = ref(false)
+const newtitle = ref('')
 
 function closeModal() {
     isOpenModal.value = false
 }
 
-const handleSubmit = async () => {
-    await todoStore.getTodos()
+const handleSubmit = async (value: string) => {
+    if (value === '') {
+        alert('Your Field is empty!')
+    } else {
+        await todoStore.addTodo(value);
+        isOpenModal.value = false
+    }
 }
 
 </script>
 
+
+
 <style lang="scss" scoped>
 .container {
     display: flex;
-
 
     input {
         width: 90%;

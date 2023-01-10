@@ -12,13 +12,13 @@
 import { ref } from 'vue';
 
 const props = defineProps<{ title: String, isCompleted: boolean }>()
-const emits = defineEmits(['isDelete',])
+const emits = defineEmits(['deleteTodo',])
 
 const checked = ref(false)
 
 
 const deleteTodo = () => {
-    emits("isDelete");
+    emits("deleteTodo");
 }
 
 
