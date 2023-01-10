@@ -2,6 +2,8 @@ import { db } from "./firebase_sdk";
 import { doc, updateDoc } from "firebase/firestore";
 
 const updateCompleted = async (id: string, completed: boolean) => {
+console.log(completed);
+
     await updateDoc(doc(db, "todos", id), {
         isCompleted: completed,
     })

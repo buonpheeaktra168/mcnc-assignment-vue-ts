@@ -3,12 +3,12 @@
         <Loading v-if="isLoading" title="Loading..." />
         <AddTodo />
         <div v-for="todo in todos" :key="todo.id">
-            <ListTodo :title="todo.title" :isCompleted="todo.isCompleted" @deleteTodo="openModal" />
-            <MessageModal v-if="isOpenModal" title="Message!" message="Are you sure do you want to delete?" ok="OK"
-                cancel="No" @onOK="handelDelete(todo.id)" @onCancel="closeModal" />
+            <ListTodo :title="todo.title" :isCompleted="todo.isCompleted" @deleteTodo="openModal(todo.id)"
+                @isCheck="handlecheck(todo.id)" />
         </div>
+        <MessageModal v-if="isOpenModal" title="Message!" message="Are you sure do you want to delete?" ok="OK"
+            cancel="No" @onOK="handleDelete(todoId)" @onCancel="closeModal" />
     </div>
-
 </template>
 
 <script lang="ts" setup>
@@ -23,10 +23,11 @@ const MessageModal = defineAsyncComponent(() => import('@/shared/components/Moda
 
 const todoStore = useTodoStore()
 const { todos, isLoading } = storeToRefs(todoStore)
-
+const todoId = ref('')
 const isOpenModal = ref(false)
 
-const openModal = () => {
+const openModal = (id: string) => {
+    todoId.value = id
     isOpenModal.value = true
 }
 
@@ -36,8 +37,12 @@ const closeModal = () => {
 
 onMounted(() => { todoStore.getTodos() })
 
-const handelDelete = async (id: string) => {
+const handleDelete = async (id: string) => {
     await todoStore.deleteExistingTodo(id)
     closeModal()
+}
+
+const handlecheck = async (id: string) => {
+    await todoStore.handleCompleted(id)
 }
 </script>

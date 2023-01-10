@@ -19,6 +19,7 @@ import { defineEmits, ref, defineProps } from 'vue';
 const emits = defineEmits(["onClose", "newTitle"]);
 defineProps(['newtitle'])
 
+
 const inputValue = ref('')
 const onClose = () => { emits("onClose") }
 

@@ -62,6 +62,18 @@ export const useTodoStore = defineStore('useTodoStore', {
 
       await deleteTodo(id).then(async () => await this.getTodos())
 
-    }
+    },
+
+    async handleCompleted(id: string) {
+   
+      
+      const todo = this.todos.find((f) => f.id === id);
+
+      if (todo) {
+        todo.isCompleted = !todo.isCompleted;
+        updateCompleted(id, todo.isCompleted);
+      }
+      this.getTodos();
+    },
   },
 })

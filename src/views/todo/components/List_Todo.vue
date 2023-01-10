@@ -1,27 +1,29 @@
 <template>
     <div class="container">
         <div class="left-side">
-            <input type="checkbox" id="checkbox" v-model="props.isCompleted" />
+            <input type="checkbox" id="checkbox" v-model="props.isCompleted" @click="isCheck" />
             <h2>{{ props.title }}</h2>
         </div>
-        <button @click="deleteTodo">Delete</button>
+        <button @click="editTodo">Edit</button>
+        <button @click="deleteTodo" class="delete">Delete</button>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-
 const props = defineProps<{ title: String, isCompleted: boolean }>()
-const emits = defineEmits(['deleteTodo',])
-
-const checked = ref(false)
-
+const emits = defineEmits(['deleteTodo', 'isCheck', 'editTodo'])
 
 const deleteTodo = () => {
     emits("deleteTodo");
 }
 
+const isCheck = () => {
+    emits("isCheck");
+}
 
+const editTodo = () => {
+    emits("editTodo");
+}
 
 </script>
 
@@ -46,6 +48,10 @@ const deleteTodo = () => {
             width: 25px;
             height: 25px;
         }
+
+        .title {
+            background-color: red;
+        }
     }
 
     button {
@@ -54,6 +60,11 @@ const deleteTodo = () => {
         background-color: rgb(0, 81, 255);
         color: #fff;
         font-size: 18px;
+        width: 80px;
+        margin-left: 8px;
+    }
+    .delete {
+        background-color: red;
     }
 
 }
