@@ -3,11 +3,12 @@
         <Loading v-if="isLoading" title="Loading..." />
         <AddTodo />
         <div v-for="todo in todos" :key="todo.id">
-            <ListTodo :title="todo.title" :isCompleted="todo.isCompleted" @deleteTodo="openModal(todo.id)"
-                @isCheck="handlecheck(todo.id)" />
+            <ListTodo :title="todo.title" :isCompleted="todo.isCompleted" @deleteTodo="toggleMessageModal(todo.id)"
+                @isCheck="handlecheck(todo.id)" @editTodo="toggleUpdateModal(todo.id, todo.title)" />
         </div>
         <MessageModal v-if="isOpenModal" title="Message!" message="Are you sure do you want to delete?" ok="OK"
-            cancel="No" @onOK="handleDelete(todoId)" @onCancel="closeModal" />
+            cancel="No" @onOK="handleDelete(todoId)" @onCancel="toggleMessageModal" />
+        <UpdateModal v-if="isOpenUpdateModal" :newtitle="newTitle" @onCancel="toggleUpdateModal" />
     </div>
 </template>
 
@@ -20,29 +21,39 @@ const Loading = defineAsyncComponent(() => import('@/shared/components/LoadingSp
 const AddTodo = defineAsyncComponent(() => import('@/views/todo/components/Add_Todo.vue'))
 const ListTodo = defineAsyncComponent(() => import('@/views/todo/components/List_Todo.vue'))
 const MessageModal = defineAsyncComponent(() => import('@/shared/components/Modal/Message_Modal.vue'))
+const UpdateModal = defineAsyncComponent(() => import('@/shared/components/Modal/Update_Modal.vue'))
 
 const todoStore = useTodoStore()
 const { todos, isLoading } = storeToRefs(todoStore)
 const todoId = ref('')
 const isOpenModal = ref(false)
+const isOpenUpdateModal = ref(false)
+const newTitle = ref('')
 
-const openModal = (id: string) => {
+const toggleMessageModal = (id: string) => {
     todoId.value = id
-    isOpenModal.value = true
+    isOpenModal.value = !isOpenModal.value
 }
 
-const closeModal = () => {
-    isOpenModal.value = false
+const toggleUpdateModal = (id: string, title: string) => {
+    todoId.value = id;
+    newTitle.value = title;
+    console.log(newTitle.value)
+    isOpenUpdateModal.value = !isOpenUpdateModal.value
 }
 
 onMounted(() => { todoStore.getTodos() })
 
 const handleDelete = async (id: string) => {
-    await todoStore.deleteExistingTodo(id)
-    closeModal()
+    await todoStore.deleteExistingTodo(id);
+    toggleMessageModal(id);
 }
 
 const handlecheck = async (id: string) => {
     await todoStore.handleCompleted(id)
+}
+
+const handleEdit = () => {
+
 }
 </script>

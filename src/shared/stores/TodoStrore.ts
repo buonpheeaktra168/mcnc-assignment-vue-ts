@@ -65,8 +65,7 @@ export const useTodoStore = defineStore('useTodoStore', {
     },
 
     async handleCompleted(id: string) {
-   
-      
+
       const todo = this.todos.find((f) => f.id === id);
 
       if (todo) {
@@ -75,5 +74,9 @@ export const useTodoStore = defineStore('useTodoStore', {
       }
       this.getTodos();
     },
+
+    async handleUpdate(newtitle: string) {
+      
+    }
   },
 })
