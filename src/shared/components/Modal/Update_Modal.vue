@@ -3,7 +3,7 @@
         <div class="modal">
             <transition name="modal-animation-inner">
                 <div class="modal-inner">
-                    <input v-model="inputValue"/>
+                    <input v-model="inputValue" />
                     <div class="button">
                         <button class="cancel" @click="onCancel">Cancel</button>
                         <button class="add" @click="updateTitle">Update</button>
@@ -16,17 +16,17 @@
 
 <script lang="ts" setup>
 import { defineEmits, ref, defineProps } from 'vue';
-const emits = defineEmits(["onCancel", "newTitle"]);
+const emits = defineEmits(["onCancel", "updateTitle"]);
 const props = defineProps(['newtitle'])
 
 
 const inputValue = ref(props.newtitle)
 const onCancel = () => { emits("onCancel") }
 
-const updateTitle = ()=> {
+const updateTitle = () => {
     console.log(props.newtitle);
-    
-    emits('newTitle', inputValue.value)
+
+    emits('updateTitle', inputValue.value)
 }
 
 

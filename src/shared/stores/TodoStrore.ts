@@ -37,8 +37,6 @@ export const useTodoStore = defineStore('useTodoStore', {
 
       this.todos = resData;
 
-      // console.log('myData', this.todos)
-
       this.isLoading = false;
     },
 
@@ -75,8 +73,12 @@ export const useTodoStore = defineStore('useTodoStore', {
       this.getTodos();
     },
 
-    async handleUpdate(newtitle: string) {
-      
+    async handleUpdate(id: string, newtitle: string) {
+      const todo = this.todos.find((d) => d.id === id)
+      if (todo) {
+        todo.title = newtitle;
+        updateTitle(id, todo.title);
+      }
     }
   },
 })

@@ -8,7 +8,7 @@ console.log(completed);
         isCompleted: completed,
     })
 }
-
+ 
 const updateTitle = async (id: string, title: string) => {
     await updateDoc(doc(db, "todos", id), {
         title: title

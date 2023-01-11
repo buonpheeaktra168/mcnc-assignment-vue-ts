@@ -6,9 +6,11 @@
             <ListTodo :title="todo.title" :isCompleted="todo.isCompleted" @deleteTodo="toggleMessageModal(todo.id)"
                 @isCheck="handlecheck(todo.id)" @editTodo="toggleUpdateModal(todo.id, todo.title)" />
         </div>
-        <MessageModal v-if="isOpenModal" title="Message!" message="Are you sure do you want to delete?" ok="OK"
-            cancel="No" @onOK="handleDelete(todoId)" @onCancel="toggleMessageModal" />
-        <UpdateModal v-if="isOpenUpdateModal" :newtitle="newTitle" @onCancel="toggleUpdateModal" />
+        <MessageModal v-if="isOpenModal" :title="messageTitile.message" :message="messageTitile.titleMessage"
+            :ok="messageTitile.ok" :cancel="messageTitile.no" @onOK="handleDelete(todoId)"
+            @onCancel="toggleMessageModal" />
+        <UpdateModal v-if="isOpenUpdateModal" :newtitle="newTitle" @onCancel="toggleUpdateModal"
+            @updateTitle="handleEdit" />
     </div>
 </template>
 
@@ -29,6 +31,12 @@ const todoId = ref('')
 const isOpenModal = ref(false)
 const isOpenUpdateModal = ref(false)
 const newTitle = ref('')
+const messageTitile = ref({
+    message: 'Message',
+    titleMessage: 'Are you sure do you want to delete?',
+    ok: 'OK',
+    no: 'No',
+})
 
 const toggleMessageModal = (id: string) => {
     todoId.value = id
@@ -38,7 +46,6 @@ const toggleMessageModal = (id: string) => {
 const toggleUpdateModal = (id: string, title: string) => {
     todoId.value = id;
     newTitle.value = title;
-    console.log(newTitle.value)
     isOpenUpdateModal.value = !isOpenUpdateModal.value
 }
 
@@ -53,7 +60,14 @@ const handlecheck = async (id: string) => {
     await todoStore.handleCompleted(id)
 }
 
-const handleEdit = () => {
+const handleEdit = (val: string) => {
+    if (val == '') {
+        alert('You can not update without empty field!')
+    } else {
+        todoStore.handleUpdate(todoId.value, val);
+        isOpenUpdateModal.value = !isOpenUpdateModal.value
+        alert('Update successfully');
+    }
 
 }
 </script>

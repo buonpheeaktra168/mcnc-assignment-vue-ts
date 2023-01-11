@@ -3,7 +3,7 @@
         <div class="modal">
             <transition name="modal-animation-inner">
                 <div class="modal-inner">
-                    <input v-model="inputValue"/>
+                    <input v-model="inputValue" />
                     <div class="button">
                         <button class="cancel" @click="onClose">Cancel</button>
                         <button class="add" @click="updateTitle">Add</button>
@@ -23,7 +23,7 @@ defineProps(['newtitle'])
 const inputValue = ref('')
 const onClose = () => { emits("onClose") }
 
-const updateTitle = ()=> {
+const updateTitle = () => {
     emits('newTitle', inputValue.value)
 }
 
