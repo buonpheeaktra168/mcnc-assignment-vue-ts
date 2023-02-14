@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Loading v-if="isLoading" title="Loading..." />
+        <!-- <Loading v-if="isLoading" title="Loading..." /> -->
         <AddTodo />
         <div v-for="todo in todos" :key="todo.id">
             <ListTodo :title="todo.title" :isCompleted="todo.isCompleted" @deleteTodo="toggleMessageModal(todo.id)"
